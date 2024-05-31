@@ -49,7 +49,7 @@ Esta es una biblioteca de software escrita en C para interactuar con el reloj en
 Para más detalles sobre cada función y sus parámetros, consulta el archivo de encabezado `rtc_ds1307_for_stm32_hal.h`.
 
 
-## Esquema 
+## Esquema
 
 
 <img src="./img/esquema_rtc.jpg" alt="Ejemplo de imagen" width="900">

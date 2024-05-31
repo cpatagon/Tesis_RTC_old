@@ -1,17 +1,18 @@
 /**
  * @file rtc_ds1307_for_stm32_hal.c
- * @brief Implementación de la biblioteca STM32 HAL para el circuito integrado de reloj en tiempo real DS1307.
+ * @brief Implementación de la biblioteca STM32 HAL para el circuito integrado de reloj en tiempo
+ * real DS1307.
  * @author Luis Gómez P.
  * @copyright (C) 2023 Luis Gómez P.
  * @license GNU General Public License v3.0
  *
- * Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia
- * Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o
- * (a tu elección) cualquier versión posterior.
+ * Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la
+ * Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la
+ * Licencia, o (a tu elección) cualquier versión posterior.
  *
- * Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera
- * la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública
- * General GNU para más detalles.
+ * Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin
+ * siquiera la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO PARTICULAR. Ver la
+ * Licencia Pública General GNU para más detalles.
  *
  * Deberías haber recibido una copia de la Licencia Pública General GNU junto con este programa.
  * Si no es así, visita <http://www.gnu.org/licenses/>.
@@ -22,7 +23,6 @@
 /* === Headers files inclusions =============================================================== */
 #include "rtc_ds1307_for_stm32_hal.h"
 #include <stddef.h> // Añadir esta línea para definir NULL
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,8 +35,8 @@ extern "C" {
 // No specific private data types
 
 /* === Private variable declarations =========================================================== */
-//I2C_HandleTypeDef * _ds1307_ui2c;  ///< Manejador de I2C para el DS1307.
-static I2C_Interface_t* _i2c;
+// I2C_HandleTypeDef * _ds1307_ui2c;  ///< Manejador de I2C para el DS1307.
+static I2C_Interface_t * _i2c;
 /* === Private function declarations =========================================================== */
 // No private functions
 
@@ -59,7 +59,7 @@ static I2C_Interface_t* _i2c;
  *
  * @param[in] i2c Puntero a la interfaz I2C utilizada para la comunicación.
  */
-void DS1307_Init(I2C_Interface_t* i2c) {
+void DS1307_Init(I2C_Interface_t * i2c) {
     if (i2c == NULL) {
         return;
     }
@@ -79,7 +79,8 @@ void DS1307_Init(I2C_Interface_t* i2c) {
  * del DS1307. Si el bit CH está establecido, el reloj se detiene. Si el bit CH está
  * limpio, el reloj arranca.
  *
- * @param[in] halt Si es 1, el bit CH se establece para detener el reloj. Si es 0, el bit CH se limpia para arrancar el reloj.
+ * @param[in] halt Si es 1, el bit CH se establece para detener el reloj. Si es 0, el bit CH se
+ * limpia para arrancar el reloj.
  */
 void DS1307_SetClockHalt(uint8_t halt) {
     uint8_t ch = (halt ? 1 << 7 : 0);
@@ -264,8 +265,8 @@ int8_t DS1307_GetTimeZoneHour(void) {
 /**
  * @brief Obtiene el desplazamiento de minutos UTC almacenado en el DS1307.
  *
- * Este valor representa los minutos de ajuste respecto a la hora UTC, y debe ser configurado manualmente.
- * No se actualiza automáticamente con cambios de zona horaria.
+ * Este valor representa los minutos de ajuste respecto a la hora UTC, y debe ser configurado
+ * manualmente. No se actualiza automáticamente con cambios de zona horaria.
  *
  * @note La compensación de minutos UTC no se actualiza automáticamente.
  * @return Minutos de desplazamiento de la zona horaria UTC, en el rango de 0 a 59.
@@ -379,7 +380,8 @@ void DS1307_SetTimeZone(int8_t hr, uint8_t min) {
  *
  * This function converts a BCD value into its decimal equivalent. BCD values represent
  * each decimal digit with its own byte for simplicity in digital systems handling.
- * The function extracts the tens and units from the BCD value and combines them to form the decimal value.
+ * The function extracts the tens and units from the BCD value and combines them to form the decimal
+ * value.
  *
  * @param bin The BCD value retrieved from a register, range from 0 to 255.
  * @return The decimal value decoded from the BCD value.
@@ -393,8 +395,9 @@ uint8_t DS1307_DecodeBCD(uint8_t bin) {
 /**
  * @brief Encodes a decimal number to a BCD (Binary-Coded Decimal) format for storage in registers.
  *
- * This function converts a decimal value into a BCD format, suitable for storage in digital systems that handle BCD.
- * The decimal value is split into tens and units, which are then encoded into a single byte.
+ * This function converts a decimal value into a BCD format, suitable for storage in digital systems
+ * that handle BCD. The decimal value is split into tens and units, which are then encoded into a
+ * single byte.
  *
  * @param dec The decimal number to encode, range from 0 to 99.
  * @return The BCD value encoded from the decimal number.
@@ -405,10 +408,8 @@ uint8_t DS1307_EncodeBCD(uint8_t dec) {
     return ((dec / 10) << 4) | (dec % 10);
 }
 
-
 /* === End of documentation ==================================================================== */
 
 #ifdef __cplusplus
 }
 #endif
-

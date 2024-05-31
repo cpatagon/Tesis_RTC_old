@@ -3428,7 +3428,7 @@ HAL_StatusTypeDef HAL_Init(void)
 {
  8001b3c:	b580      	push	{r7, lr}
  8001b3e:	af00      	add	r7, sp, #0
-  /* Configure Flash prefetch, Instruction cache, Data cache */ 
+  /* Configure Flash prefetch, Instruction cache, Data cache */
 #if (INSTRUCTION_CACHE_ENABLE != 0U)
   __HAL_FLASH_INSTRUCTION_CACHE_ENABLE();
  8001b40:	4b0e      	ldr	r3, [pc, #56]	; (8001b7c <HAL_Init+0x40>)
@@ -3546,7 +3546,7 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  8001bdc:	20000008 	.word	0x20000008
 
 08001be0 <HAL_IncTick>:
- * @note This function is declared as __weak to be overwritten in case of other 
+ * @note This function is declared as __weak to be overwritten in case of other
   *      implementations in user file.
   * @retval None
   */
@@ -3573,7 +3573,7 @@ __weak void HAL_IncTick(void)
  8001c04:	20000304 	.word	0x20000304
 
 08001c08 <HAL_GetTick>:
-  * @note This function is declared as __weak to be overwritten in case of other 
+  * @note This function is declared as __weak to be overwritten in case of other
   *       implementations in user file.
   * @retval tick value
   */
@@ -3924,8 +3924,8 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
  8001e04:	e000e010 	.word	0xe000e010
 
 08001e08 <HAL_NVIC_SetPriorityGrouping>:
-  * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible. 
-  *         The pending IRQ priority will be managed only by the subpriority. 
+  * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible.
+  *         The pending IRQ priority will be managed only by the subpriority.
   * @retval None
   */
 void HAL_NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
@@ -3936,7 +3936,7 @@ void HAL_NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
  8001e0e:	6078      	str	r0, [r7, #4]
   /* Check the parameters */
   assert_param(IS_NVIC_PRIORITY_GROUP(PriorityGroup));
-  
+
   /* Set the PRIGROUP[10:8] bits according to the PriorityGroup parameter value */
   NVIC_SetPriorityGrouping(PriorityGroup);
  8001e10:	6878      	ldr	r0, [r7, #4]
@@ -3949,11 +3949,11 @@ void HAL_NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
 
 08001e1e <HAL_NVIC_SetPriority>:
   *         This parameter can be a value between 0 and 15
-  *         A lower priority value indicates a higher priority.          
+  *         A lower priority value indicates a higher priority.
   * @retval None
   */
 void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
-{ 
+{
  8001e1e:	b580      	push	{r7, lr}
  8001e20:	b086      	sub	sp, #24
  8001e22:	af00      	add	r7, sp, #0
@@ -3964,15 +3964,15 @@ void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t Sub
   uint32_t prioritygroup = 0x00U;
  8001e2c:	2300      	movs	r3, #0
  8001e2e:	617b      	str	r3, [r7, #20]
-  
+
   /* Check the parameters */
   assert_param(IS_NVIC_SUB_PRIORITY(SubPriority));
   assert_param(IS_NVIC_PREEMPTION_PRIORITY(PreemptPriority));
-  
+
   prioritygroup = NVIC_GetPriorityGrouping();
  8001e30:	f7ff ff3e 	bl	8001cb0 <__NVIC_GetPriorityGrouping>
  8001e34:	6178      	str	r0, [r7, #20]
-  
+
   NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, PreemptPriority, SubPriority));
  8001e36:	687a      	ldr	r2, [r7, #4]
  8001e38:	68b9      	ldr	r1, [r7, #8]
@@ -4003,7 +4003,7 @@ void HAL_NVIC_EnableIRQ(IRQn_Type IRQn)
  8001e5e:	71fb      	strb	r3, [r7, #7]
   /* Check the parameters */
   assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
-  
+
   /* Enable interrupt */
   NVIC_EnableIRQ(IRQn);
  8001e60:	f997 3007 	ldrsb.w	r3, [r7, #7]
@@ -4038,7 +4038,7 @@ uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb)
 
 08001e8a <HAL_DMA_Abort>:
   *        and the Stream will be effectively disabled only after the transfer of
-  *        this single data is finished.  
+  *        this single data is finished.
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
@@ -4052,11 +4052,11 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001e92:	687b      	ldr	r3, [r7, #4]
  8001e94:	6d9b      	ldr	r3, [r3, #88]	; 0x58
  8001e96:	60fb      	str	r3, [r7, #12]
-  
+
   uint32_t tickstart = HAL_GetTick();
  8001e98:	f7ff feb6 	bl	8001c08 <HAL_GetTick>
  8001e9c:	60b8      	str	r0, [r7, #8]
-  
+
   if(hdma->State != HAL_DMA_STATE_BUSY)
  8001e9e:	687b      	ldr	r3, [r7, #4]
  8001ea0:	f893 3035 	ldrb.w	r3, [r3, #53]	; 0x35
@@ -4068,13 +4068,13 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001eaa:	687b      	ldr	r3, [r7, #4]
  8001eac:	2280      	movs	r2, #128	; 0x80
  8001eae:	655a      	str	r2, [r3, #84]	; 0x54
-    
+
     /* Process Unlocked */
     __HAL_UNLOCK(hdma);
  8001eb0:	687b      	ldr	r3, [r7, #4]
  8001eb2:	2200      	movs	r2, #0
  8001eb4:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
-    
+
     return HAL_ERROR;
  8001eb8:	2301      	movs	r3, #1
  8001eba:	e052      	b.n	8001f62 <HAL_DMA_Abort+0xd8>
@@ -4098,7 +4098,7 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001ed4:	681b      	ldr	r3, [r3, #0]
  8001ed6:	f022 0280 	bic.w	r2, r2, #128	; 0x80
  8001eda:	615a      	str	r2, [r3, #20]
-    
+
     if((hdma->XferHalfCpltCallback != NULL) || (hdma->XferM1HalfCpltCallback != NULL))
  8001edc:	687b      	ldr	r3, [r7, #4]
  8001ede:	6c1b      	ldr	r3, [r3, #64]	; 0x40
@@ -4118,7 +4118,7 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001ef6:	f022 0208 	bic.w	r2, r2, #8
  8001efa:	601a      	str	r2, [r3, #0]
     }
-    
+
     /* Disable the stream */
     __HAL_DMA_DISABLE(hdma);
  8001efc:	687b      	ldr	r3, [r7, #4]
@@ -4128,7 +4128,7 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001f04:	681b      	ldr	r3, [r3, #0]
  8001f06:	f022 0201 	bic.w	r2, r2, #1
  8001f0a:	601a      	str	r2, [r3, #0]
-    
+
     /* Check if the DMA Stream is effectively disabled */
     while((hdma->Instance->CR & DMA_SxCR_EN) != RESET)
  8001f0c:	e013      	b.n	8001f36 <HAL_DMA_Abort+0xac>
@@ -4147,19 +4147,19 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001f1c:	687b      	ldr	r3, [r7, #4]
  8001f1e:	2220      	movs	r2, #32
  8001f20:	655a      	str	r2, [r3, #84]	; 0x54
-        
+
         /* Change the DMA state */
         hdma->State = HAL_DMA_STATE_TIMEOUT;
  8001f22:	687b      	ldr	r3, [r7, #4]
  8001f24:	2203      	movs	r2, #3
  8001f26:	f883 2035 	strb.w	r2, [r3, #53]	; 0x35
-        
+
         /* Process Unlocked */
         __HAL_UNLOCK(hdma);
  8001f2a:	687b      	ldr	r3, [r7, #4]
  8001f2c:	2200      	movs	r2, #0
  8001f2e:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
-        
+
         return HAL_TIMEOUT;
  8001f32:	2303      	movs	r3, #3
  8001f34:	e015      	b.n	8001f62 <HAL_DMA_Abort+0xd8>
@@ -4172,7 +4172,7 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001f42:	d1e4      	bne.n	8001f0e <HAL_DMA_Abort+0x84>
       }
     }
-    
+
     /* Clear all interrupt flags at correct offset within the register */
     regs->IFCR = 0x3FU << hdma->StreamIndex;
  8001f44:	687b      	ldr	r3, [r7, #4]
@@ -4181,13 +4181,13 @@ HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma)
  8001f4a:	409a      	lsls	r2, r3
  8001f4c:	68fb      	ldr	r3, [r7, #12]
  8001f4e:	609a      	str	r2, [r3, #8]
-    
+
     /* Change the DMA state*/
     hdma->State = HAL_DMA_STATE_READY;
  8001f50:	687b      	ldr	r3, [r7, #4]
  8001f52:	2201      	movs	r2, #1
  8001f54:	f883 2035 	strb.w	r2, [r3, #53]	; 0x35
-    
+
     /* Process Unlocked */
     __HAL_UNLOCK(hdma);
  8001f58:	687b      	ldr	r3, [r7, #4]
@@ -4235,7 +4235,7 @@ HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma)
  8001f88:	687b      	ldr	r3, [r7, #4]
  8001f8a:	2205      	movs	r2, #5
  8001f8c:	f883 2035 	strb.w	r2, [r3, #53]	; 0x35
-    
+
     /* Disable the stream */
     __HAL_DMA_DISABLE(hdma);
  8001f90:	687b      	ldr	r3, [r7, #4]
@@ -4328,7 +4328,7 @@ void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
         /* Check the Speed parameter */
         assert_param(IS_GPIO_SPEED(GPIO_Init->Speed));
         /* Configure the IO Speed */
-        temp = GPIOx->OSPEEDR; 
+        temp = GPIOx->OSPEEDR;
  8002002:	687b      	ldr	r3, [r7, #4]
  8002004:	689b      	ldr	r3, [r3, #8]
  8002006:	61bb      	str	r3, [r7, #24]
@@ -4393,7 +4393,7 @@ void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
       {
         /* Check the parameters */
         assert_param(IS_GPIO_PULL(GPIO_Init->Pull));
-        
+
         /* Activate the Pull-up or Pull down resistor for the current IO */
         temp = GPIOx->PUPDR;
  8002070:	687b      	ldr	r3, [r7, #4]

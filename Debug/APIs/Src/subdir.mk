@@ -3,21 +3,21 @@
 # Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
-# Add inputs and outputs from these tool invocations to the build variables 
+# Add inputs and outputs from these tool invocations to the build variables
 C_SRCS += \
 ../APIs/Src/i2c_adapter.c \
 ../APIs/Src/rtc_ds1307_for_stm32_hal.c \
-../APIs/Src/uart.c 
+../APIs/Src/uart.c
 
 OBJS += \
 ./APIs/Src/i2c_adapter.o \
 ./APIs/Src/rtc_ds1307_for_stm32_hal.o \
-./APIs/Src/uart.o 
+./APIs/Src/uart.o
 
 C_DEPS += \
 ./APIs/Src/i2c_adapter.d \
 ./APIs/Src/rtc_ds1307_for_stm32_hal.d \
-./APIs/Src/uart.d 
+./APIs/Src/uart.d
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -30,4 +30,3 @@ clean-APIs-2f-Src:
 	-$(RM) ./APIs/Src/i2c_adapter.cyclo ./APIs/Src/i2c_adapter.d ./APIs/Src/i2c_adapter.o ./APIs/Src/i2c_adapter.su ./APIs/Src/rtc_ds1307_for_stm32_hal.cyclo ./APIs/Src/rtc_ds1307_for_stm32_hal.d ./APIs/Src/rtc_ds1307_for_stm32_hal.o ./APIs/Src/rtc_ds1307_for_stm32_hal.su ./APIs/Src/uart.cyclo ./APIs/Src/uart.d ./APIs/Src/uart.o ./APIs/Src/uart.su
 
 .PHONY: clean-APIs-2f-Src
-

@@ -3,15 +3,15 @@
 # Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
-# Add inputs and outputs from these tool invocations to the build variables 
+# Add inputs and outputs from these tool invocations to the build variables
 C_SRCS += \
-../APIs/test/test_ParticulateDataAnalyzer.c 
+../APIs/test/test_ParticulateDataAnalyzer.c
 
 OBJS += \
-./APIs/test/test_ParticulateDataAnalyzer.o 
+./APIs/test/test_ParticulateDataAnalyzer.o
 
 C_DEPS += \
-./APIs/test/test_ParticulateDataAnalyzer.d 
+./APIs/test/test_ParticulateDataAnalyzer.d
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,4 +24,3 @@ clean-APIs-2f-test:
 	-$(RM) ./APIs/test/test_ParticulateDataAnalyzer.cyclo ./APIs/test/test_ParticulateDataAnalyzer.d ./APIs/test/test_ParticulateDataAnalyzer.o ./APIs/test/test_ParticulateDataAnalyzer.su
 
 .PHONY: clean-APIs-2f-test
-

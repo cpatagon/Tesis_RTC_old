@@ -36,7 +36,7 @@
 
 /**
  * @file  test_rtc_ds1307_for_stm32_hal.c
- * @brief Este archivo contiene pruebas unitarias para el módulo 
+ * @brief Este archivo contiene pruebas unitarias para el módulo
  *
  *
  * @test Pruebas unitarias implementadas:
@@ -78,7 +78,8 @@ void test_DS1307_Init_Should_InitializeI2CAndStartClock(void) {
     // Llamar a la función que se está probando
     DS1307_Init(&mock_i2c);
 
-    // No se necesitan verificaciones adicionales de mock aquí, CMock se encargará de las expectativas.
+    // No se necesitan verificaciones adicionales de mock aquí, CMock se encargará de las
+    // expectativas.
 }
 
 void test_DS1307_GetDate_Should_ReturnCorrectDate(void) {
@@ -94,14 +95,5 @@ void test_DS1307_GetDate_Should_ReturnCorrectDate(void) {
     // Verificar que la función devuelve el valor esperado
     TEST_ASSERT_EQUAL_UINT8(expected_date, date);
 }
-
-
-
-
-
-
-
-
-
 
 /* === End of documentation ==================================================================== */
