@@ -1330,7 +1330,7 @@ Disassembly of section .text:
  *
  * @param[in] i2c Puntero a la interfaz I2C utilizada para la comunicación.
  */
-void DS1307_Init(I2C_Interface_t* i2c) {
+void DS1307_Init(I2C_Interface_t * i2c) {
  8001018:	b590      	push	{r4, r7, lr}
  800101a:	b085      	sub	sp, #20
  800101c:	af00      	add	r7, sp, #0
@@ -1594,7 +1594,7 @@ int8_t DS1307_GetTimeZoneHour(void) {
  800117c:	bd80      	pop	{r7, pc}
 
 0800117e <DS1307_GetTimeZoneMin>:
- * No se actualiza automáticamente con cambios de zona horaria.
+ * manualmente. No se actualiza automáticamente con cambios de zona horaria.
  *
  * @note La compensación de minutos UTC no se actualiza automáticamente.
  * @return Minutos de desplazamiento de la zona horaria UTC, en el rango de 0 a 59.
@@ -1611,7 +1611,7 @@ uint8_t DS1307_GetTimeZoneMin(void) {
  800118c:	bd80      	pop	{r7, pc}
 
 0800118e <DS1307_DecodeBCD>:
- * The function extracts the tens and units from the BCD value and combines them to form the decimal value.
+ * value.
  *
  * @param bin The BCD value retrieved from a register, range from 0 to 255.
  * @return The decimal value decoded from the BCD value.
@@ -1651,7 +1651,7 @@ uint8_t DS1307_DecodeBCD(uint8_t bin) {
  * @brief Envía un mensaje a través de UART3.
  * @param message Mensaje a enviar.
  */
-void uart_print(const char *message) {
+void uart_print(const char * message) {
  80011c0:	b580      	push	{r7, lr}
  80011c2:	b082      	sub	sp, #8
  80011c4:	af00      	add	r7, sp, #0

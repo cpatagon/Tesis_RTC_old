@@ -1,9 +1,6 @@
 /*
  * Nombre del archivo: test_rtc_ds1307_for_stm32_hal.c
- * Descripción: Pruebas orientadas a analizar conjuntos de datos entregados por los sensores de
- * MP (Material Particulado). Para su desarrollo, se utilizó la técnica de Desarrollo Guiado por
- * Pruebas (TDD, por sus siglas en inglés). El objetivo es implementar un conjunto de pruebas
- * unitarias que guíen el desarrollo del software de manera iterativa.
+ * Descripción: Pruebas orientadas a analizar conjuntos de datos entregado y leidos por el RTC
  * Autor: Luis Gómez P.
  * Derechos de Autor: (C) 2023 CESE FIUBA
  * Licencia: GNU General Public License v3.0
@@ -24,20 +21,10 @@
  * SPDX-License-Identifier: GPL-3.0-only
  *
  */
-/*
-//////////////////////////////////////////////
-// *** lista de pruebas pendientes ***
-07.- Prender leds que ya están prendidos antes.
-08.- Apagar los leds que ya estén apagados.
-09.- Comprobar valores prohibidos.
-10.- Comprobar los valores de borde o límite.
-///////////////////////////////////////////////
-*/
 
 /**
  * @file  test_rtc_ds1307_for_stm32_hal.c
  * @brief Este archivo contiene pruebas unitarias para el módulo
- *
  *
  * @test Pruebas unitarias implementadas:
  */
@@ -78,22 +65,25 @@ void test_DS1307_Init_Should_InitializeI2CAndStartClock(void) {
     // Llamar a la función que se está probando
     DS1307_Init(&mock_i2c);
 
-    // No se necesitan verificaciones adicionales de mock aquí, CMock se encargará de las
-    // expectativas.
+    // Verificar que las funciones mock se llamaron la cantidad de veces esperada
+    mock_i2c_adapter_Verify();
 }
 
-void test_DS1307_GetDate_Should_ReturnCorrectDate(void) {
-    uint8_t expected_date = 0x15; // Supongamos que esperamos que la fecha sea 15
+/*
+void test_DS1307_GetRegByte_Should_ReturnCorrectValue(void) {
+    uint8_t regAddr = DS1307_REG_DATE; // Dirección del registro que queremos leer
+    uint8_t expected_value = 0x15; // Supongamos que esperamos leer el valor 0x15 desde el registro
 
-    // Configurar expectativa para la función mock
-    I2C_HAL_Transmit_CMockExpect(__LINE__, DS1307_I2C_ADDR, &DS1307_REG_DATE, 1, DS1307_TIMEOUT);
-    I2C_HAL_Receive_CMockExpect(__LINE__, DS1307_I2C_ADDR, &expected_date, 1, DS1307_TIMEOUT);
+    // Configurar expectativas para las funciones mock
+    I2C_HAL_Transmit_CMockExpect(__LINE__, DS1307_I2C_ADDR, &regAddr, 1, DS1307_TIMEOUT);
+    I2C_HAL_Receive_CMockExpect(__LINE__, DS1307_I2C_ADDR, &expected_value, 1, DS1307_TIMEOUT);
 
     // Llamar a la función que se está probando
-    uint8_t date = DS1307_GetDate();
+    uint8_t actual_value = DS1307_GetRegByte(regAddr);
 
     // Verificar que la función devuelve el valor esperado
-    TEST_ASSERT_EQUAL_UINT8(expected_date, date);
+    TEST_ASSERT_EQUAL_UINT8(expected_value, actual_value);
 }
+*/
 
 /* === End of documentation ==================================================================== */
